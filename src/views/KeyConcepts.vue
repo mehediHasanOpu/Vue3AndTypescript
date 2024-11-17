@@ -3,7 +3,6 @@ import {defineComponent, ref, reactive} from 'vue'
 import type { PropType } from "vue";
 import CodeSnippet from "@/components/CodeSnippet.vue";
 import CustomComponent from "@/components/CustomComponent.vue";
-
 export default defineComponent({
   name: "KeyConcepts",
   props: {
@@ -29,16 +28,16 @@ export default defineComponent({
     //console.log(props.count + 1); // TypeScript knows props.count is a number
 
     // ref and reactive
-    const count = ref<number>(0); // count is a Ref<number>
+    /*const count = ref<number>(0); // count is a Ref<number>
     const state = reactive<{ name: string; age: number }>({
       name: 'John',
       age: 30,
     });
     count.value = 5; // Works
-    //count.value = "string"; // Error: Type 'string' is not assignable to type 'number'
-
+    count.value = "string"; // Error: Type 'string' is not assignable to type 'number'
+*/
     //Emits and Events
-    emit('update', 123); // Works
+    //emit('update', 123); // Works
     //emit('update', 'string'); // Error: Argument of type 'string' is not assignable to parameter of type 'number'
 
 
@@ -49,15 +48,32 @@ export default defineComponent({
 
 
     const customComponent = ref<InstanceType<typeof CustomComponent> | null>(null);
+    const download = ref<HTMLAnchorElement | null>(null);
+    const fileInput = ref<HTMLInputElement | null>(null);
 
     const open = () => {
       if (customComponent.value) {
-        //customComponent.value.open(54646);
+        customComponent.value.open("Hello");
       }
     }
+
+    const setHrefToDownloadElement = (href: string) => {
+      if (download.value)
+        download.value.href = href;
+    }
+
+    const triggerDownloadElement = () => {
+      if (download.value)
+        download.value.click();
+    }
+
+
+
     return {
       customComponent,
-      open
+      download,
+      fileInput,
+      open,
     }
   },
 })
@@ -126,7 +142,8 @@ export default defineComponent({
 
     </v-expansion-panels>
     <custom-component ref="customComponent"></custom-component>
-
+    <a href="#" ref="download" target="_blank" class="d-none"></a>
+    <input type="file" class="d-none" multiple ref="fileInput" accept=".json" />
   </div>
 
 </template>
