@@ -9,7 +9,7 @@ export default defineComponent({
     }
   },
   methods: {
-    test() {
+    unknownFunction() {
       this.x.forEach(it => {
         console.log(it)
       })
@@ -19,7 +19,7 @@ export default defineComponent({
         name: "Javascript",
       }
       this.x = ["a", "b", "c", "d"];
-    }
+    },
   }
 })
 </script>

@@ -12,10 +12,11 @@
             </li>
             <li>
               Example
-              <code-snippet>
-                let count: number = 0;
-                <br>
-                count = "5"; // TypeScript error: Type 'string' is not assignable to type 'number'
+              <code-snippet style="overflow: auto">
+<pre>
+let count: number = 0;
+count = "5"; // TypeScript error: Type 'string' is not assignable to type 'number'
+</pre>
               </code-snippet>
             </li>
           </ul>

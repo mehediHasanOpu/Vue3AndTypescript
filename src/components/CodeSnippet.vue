@@ -9,7 +9,6 @@ export default defineComponent({
 <template>
   <div id="code-snippet" class="mx-auto">
     <slot></slot>
-
   </div>
 </template>
 

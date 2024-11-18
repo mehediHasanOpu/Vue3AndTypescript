@@ -1,24 +1,28 @@
 export class User {
-  private id: string;
+  private id?: string;
   private name: string;
-  private password?: string;
+  private password: string;
   private active: boolean = true;
 
-  constructor(id: string, name: string) {
-    this.id = id;
+  constructor(name: string, password: string) {
+    this.password = password;
     this.name = name;
   }
 
   public save(): void {
-    this.password = crypto.randomUUID();
+    this.id = crypto.randomUUID();
+  }
+
+  public update(): void {
+    this.save()
   }
 }
 
 
 export class UserService {
-  public saveUser(id: string, name: string) {
+  public saveUser(name: string, password: string) {
     //const user = new User(); //Error Expected 2 arguments, but got 0
-    const user = new User(id, name);
+    const user = new User(name, password);
     user.save();
   }
 }
